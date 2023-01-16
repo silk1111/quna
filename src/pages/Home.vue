@@ -1,11 +1,13 @@
 <template>
     <div>
         <HomeHeader></HomeHeader>
+        <HommeSwiper ></HommeSwiper>
     </div>
 </template>
 
 <script>
 import HomeHeader from './components/Header.vue'
+import HommeSwiper from './components/Swiper.vue'
  /* eslint-disable */
 export default {
     name: 'Home',
@@ -24,7 +26,8 @@ export default {
         
     },
     components: {
-        HomeHeader
+        HomeHeader,
+        HommeSwiper
     }
 };
 </script>
