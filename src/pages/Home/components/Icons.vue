@@ -1,12 +1,16 @@
 <template>
   <div class="icons">
-    <div class="up-icon">
+    <div
+      :class="[item.type === 'up' ? 'up-icon' : 'down-icon']"
+      v-for="item of icons"
+      :key="item.id"
+    >
       <div class="icon-img">
-        <img src="https://s.qunarzz.com/homenode/images/touchheader/hotel.png" />
+        <img :src="item.imgUrl" />
       </div>
-      <p>酒店</p>
+      <p>{{ item.name }}</p>
     </div>
-    <div class="up-icon">
+    <!-- <div class="up-icon">
       <div class="icon-img">
         <img src="https://s.qunarzz.com/homenode/images/touchheader/hotel.png" />
       </div>
@@ -119,21 +123,34 @@
         <img src="https://picbed.qunarzz.com/f5e5770393d759578962e53ee67798c8.png" />
       </div>
       <p>海外酒店</p>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "HomeIcons",
 
   data() {
-    return {};
+    return {
+      icons: [],
+    };
   },
 
-  mounted() {},
+  mounted() {
+    this.getIcons();
+  },
 
-  methods: {},
+  methods: {
+    getIcons() {
+      axios.get("/api/icons.json").then((res) => {
+        let { data } = res.data;
+        console.log(data);
+        this.icons = data;
+      });
+    },
+  },
 };
 </script>
 

@@ -27,6 +27,6 @@ export default {
 .holiday-tag {
   font-size: 0.36rem;
   font-weight: 700;
-  margin: 0.17rem 0 0.17rem 0.16rem;
+  margin: 0.17rem 0 0.17rem 0.3rem;
 }
 </style>

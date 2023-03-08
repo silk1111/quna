@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <KeepAlive>
+      <router-view></router-view>
+    </KeepAlive>
   </div>
 </template>
 
@@ -13,5 +15,6 @@ export default {
 
 <style>
 #app {
+  font-family: "黑体";
 }
 </style>

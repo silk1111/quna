@@ -12,9 +12,13 @@
       />
     </div>
     <div class="search-content" v-if="keyWord">
-      <a class="search-content-item" v-for="item of list" :key="item.id">{{
-        item.name
-      }}</a>
+      <a
+        class="search-content-item"
+        v-for="item of list"
+        :key="item.id"
+        @click="handleCityClick(item.name)"
+        >{{ item.name }}</a
+      >
       <!-- 实现搜索框有内容并且无对应查询结果时提示 -->
       <a class="search-content-item" v-if="isNoData">无搜索匹配城市</a>
     </div>
@@ -22,6 +26,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "CitySearch",
 
@@ -79,6 +84,12 @@ export default {
     changeCheckedFalse() {
       this.isChecked = false;
     },
+    handleCityClick(cityName) {
+      //this.$store.commit("changeCity", cityName);
+      this.changeCity(cityName); //使用mapMutations
+      this.$router.push("/"); //编程式路由导航
+    },
+    ...mapMutations(["changeCity"]),
   },
 };
 </script>

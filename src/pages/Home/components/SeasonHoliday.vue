@@ -19,93 +19,26 @@
       class="holiday-cards"
       :style="{ display: [dataType == 'month' ? 'block' : 'none'] }"
     >
-      <div class="holiday-card">
-        <div class="holiday-top">
-          <img
-            class="holiday-img"
-            src="https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_256x160_9fee6ccb.jpg"
-          />
-          <div class="holiday-title">
-            <div class="holiday-title-in">
-              <p class="holiday-title-site">广州-丽江</p>
-              <p class="holiday-title-message">5天跟团游</p>
+      <div class="holiday-card" v-for="item of monthHoliday" :key="item.id">
+        <router-link :to="'/detail/' + item.id">
+          <div class="holiday-top">
+            <img class="holiday-img" :src="item.url" />
+            <div class="holiday-title">
+              <div class="holiday-title-in">
+                <p class="holiday-title-site">{{ item.titleSite }}</p>
+                <p class="holiday-title-message">{{ item.titleMessage }}</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="holiday-infor">
-          <span class="holiday-name">含往返飞机票(含税)+4晚住宿</span>
-          <p class="holiday-price">
-            <span>¥</span>
-            <span>4599</span>
-          </p>
-        </div>
-      </div>
-      <div class="holiday-card">
-        <div class="holiday-top">
-          <img
-            class="holiday-img"
-            src="https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_256x160_9fee6ccb.jpg"
-          />
-          <div class="holiday-title">
-            <div class="holiday-title-in">
-              <p class="holiday-title-site">广州-丽江</p>
-              <p class="holiday-title-message">5天跟团游</p>
-            </div>
+          <div class="holiday-infor">
+            <span class="holiday-name">{{ item.holidayName }}</span>
+            <p class="holiday-price">
+              <span>{{ item.priceUnit }}</span>
+              <span>{{ item.priceNum }}</span>
+            </p>
           </div>
-        </div>
-
-        <div class="holiday-infor">
-          <span class="holiday-name">含往返飞机票(含税)+4晚住宿</span>
-          <p class="holiday-price">
-            <span>¥</span>
-            <span>4599</span>
-          </p>
-        </div>
-      </div>
-      <div class="holiday-card">
-        <div class="holiday-top">
-          <img
-            class="holiday-img"
-            src="https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_256x160_9fee6ccb.jpg"
-          />
-          <div class="holiday-title">
-            <div class="holiday-title-in">
-              <p class="holiday-title-site">广州-丽江</p>
-              <p class="holiday-title-message">5天跟团游</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="holiday-infor">
-          <span class="holiday-name">含往返飞机票(含税)+4晚住宿</span>
-          <p class="holiday-price">
-            <span>¥</span>
-            <span>4599</span>
-          </p>
-        </div>
-      </div>
-      <div class="holiday-card">
-        <div class="holiday-top">
-          <img
-            class="holiday-img"
-            src="https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_256x160_9fee6ccb.jpg"
-          />
-          <div class="holiday-title">
-            <div class="holiday-title-in">
-              <p class="holiday-title-site">广州-丽江</p>
-              <p class="holiday-title-message">5天跟团游</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="holiday-infor">
-          <span class="holiday-name">含往返飞机票(含税)+4晚住宿</span>
-          <p class="holiday-price">
-            <span>¥</span>
-            <span>4599</span>
-          </p>
-        </div>
+        </router-link>
       </div>
     </div>
 
@@ -113,83 +46,18 @@
       class="holiday-cards"
       :style="{ display: [dataType == 'today' ? 'block' : 'none'] }"
     >
-      <div class="holiday-card">
+      <div class="holiday-card" v-for="item of todayHoliday" :key="item.id">
         <div class="holiday-top">
-          <img
-            class="holiday-img"
-            src="https://imgs.qunarzz.com/vs_ceph_b2c_001/29ad36de-ec47-4198-8685-6644dea56d5d.jpg_180x120x90_9773302b.jpg"
-          />
+          <img class="holiday-img" :src="item.url" />
         </div>
 
         <div class="holiday-infor">
-          <span class="holiday-name">含往返飞机票(含税)+4晚住宿</span>
-          <span class="holiday-desc"
-            >纯玩0购物💕丽江+大理4天丨动车往返丨洱海吉普旅拍丨圣托里尼丨赠西双版纳+机票</span
-          >
+          <span class="holiday-name">{{ item.holidayName }}</span>
+          <span class="holiday-desc">{{ item.holidayDesc }}</span>
           <p class="holiday-price">
-            <span>¥</span>
-            <span>4599</span>
-            <span class="holiday-price-more">起</span>
-          </p>
-        </div>
-      </div>
-      <div class="holiday-card">
-        <div class="holiday-top">
-          <img
-            class="holiday-img"
-            src="https://imgs.qunarzz.com/vs_ceph_b2c_001/29ad36de-ec47-4198-8685-6644dea56d5d.jpg_180x120x90_9773302b.jpg"
-          />
-        </div>
-
-        <div class="holiday-infor">
-          <span class="holiday-name">含往返飞机票(含税)+4晚住宿</span>
-          <span class="holiday-desc"
-            >纯玩0购物💕丽江+大理4天丨动车往返丨洱海吉普旅拍丨圣托里尼丨赠西双版纳+机票</span
-          >
-          <p class="holiday-price">
-            <span>¥</span>
-            <span>4599</span>
-            <span class="holiday-price-more">起</span>
-          </p>
-        </div>
-      </div>
-      <div class="holiday-card">
-        <div class="holiday-top">
-          <img
-            class="holiday-img"
-            src="https://imgs.qunarzz.com/vs_ceph_b2c_001/29ad36de-ec47-4198-8685-6644dea56d5d.jpg_180x120x90_9773302b.jpg"
-          />
-        </div>
-
-        <div class="holiday-infor">
-          <span class="holiday-name">含往返飞机票(含税)+4晚住宿</span>
-          <span class="holiday-desc"
-            >纯玩0购物💕丽江+大理4天丨动车往返丨洱海吉普旅拍丨圣托里尼丨赠西双版纳+机票</span
-          >
-          <p class="holiday-price">
-            <span>¥</span>
-            <span>4599</span>
-            <span class="holiday-price-more">起</span>
-          </p>
-        </div>
-      </div>
-      <div class="holiday-card">
-        <div class="holiday-top">
-          <img
-            class="holiday-img"
-            src="https://imgs.qunarzz.com/vs_ceph_b2c_001/29ad36de-ec47-4198-8685-6644dea56d5d.jpg_180x120x90_9773302b.jpg"
-          />
-        </div>
-
-        <div class="holiday-infor">
-          <span class="holiday-name">含往返飞机票(含税)+4晚住宿</span>
-          <span class="holiday-desc"
-            >纯玩0购物💕丽江+大理4天丨动车往返丨洱海吉普旅拍丨圣托里尼丨赠西双版纳+机票</span
-          >
-          <p class="holiday-price">
-            <span>¥</span>
-            <span>4599</span>
-            <span class="holiday-price-more">起</span>
+            <span>{{ item.priceUnit }}</span>
+            <span>{{ item.priceNum }}</span>
+            <span class="holiday-price-more">{{ item.priceMore }}</span>
           </p>
         </div>
       </div>
@@ -198,24 +66,69 @@
 </template>
 
 <script>
+import axios from "axios";
+import { mapState } from "vuex";
 export default {
   name: "SeasonHoliday",
 
   data() {
     return {
       dataType: "month",
+      monthHoliday: [],
+      todayHoliday: [],
+      lastCity: "",
     };
   },
+  computed: {
+    ...mapState(["city"]), //使用mapState将state中的数据映射成为计算属性
+  },
+  mounted() {
+    // console.log("更新上一次获取的城市");
+    this.lastCity = this.city; //执行完获取度假代码时更新上一次城市数据
+    axios
+      .get("/api/homeHoliday.json?city=" + this.city)
+      .then((res) => {
+        res = res.data;
+        if (res.ret && res.data) {
+          const { monthHoliday, todayHoliday } = res.data;
+          this.monthHoliday = monthHoliday;
+          this.todayHoliday = todayHoliday;
+          // console.log("todayHoliday", todayHoliday);
+        }
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  },
+  activated() {
+    //页面重新显示时执行，router的生命周期,对于keep-alive的组件起到代替mounted的作用
+    if (this.lastCity != this.city) {
+      //当切换城市时，使用axios获取新的度假数据
+      // console.log(this.lastCity);
+      // console.log("city", this.city);
+      this.lastCity = this.city; //执行完获取度假代码时更新上一次城市数据
 
-  mounted() {},
-
+      axios
+        .get("/api/homeHoliday.json?city=" + this.city)
+        .then((res) => {
+          res = res.data;
+          if (res.ret && res.data) {
+            const { monthHoliday, todayHoliday } = res.data;
+            this.monthHoliday = monthHoliday;
+            this.todayHoliday = todayHoliday;
+            // console.log("todayHoliday", todayHoliday);
+          }
+        })
+        .catch((res) => {
+          console.log(res);
+        });
+    }
+  },
   methods: {
     changeDataType(newDataType) {
       if (newDataType !== this.dataType) {
         this.dataType = newDataType;
-      } else console.log(newDataType);
-      // console.log(this.dataType);
-      // console.log(newDataType);
+      }
     },
   },
 };

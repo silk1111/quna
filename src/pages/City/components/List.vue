@@ -6,14 +6,19 @@
         <div class="list-title">您的位置</div>
         <div class="hot-list">
           <div class="city-item">
-            <a class="city-item-name active">广州</a>
+            <a class="city-item-name active">{{ this.city }}</a>
           </div>
         </div>
       </div>
       <div class="hot-city" :style="{ display: [isAllCItyShow ? 'block' : 'none'] }">
         <div class="list-title">热门城市</div>
         <div class="hot-list">
-          <div class="city-item" v-for="item of hotCities" :key="item.id">
+          <div
+            class="city-item"
+            v-for="item of hotCities"
+            :key="item.id"
+            @click="handleCityClick(item.name)"
+          >
             <a class="city-item-name">{{ item.name }}</a>
           </div>
         </div>
@@ -28,9 +33,13 @@
       >
         <div class="list-title">{{ key }}</div>
         <div class="all-city-list">
-          <a class="all-city-item" v-for="innerItem of item" :key="innerItem.id">{{
-            innerItem.name
-          }}</a>
+          <a
+            class="all-city-item"
+            v-for="innerItem of item"
+            :key="innerItem.id"
+            @click="handleCityClick(innerItem.name)"
+            >{{ innerItem.name }}</a
+          >
         </div>
       </div>
     </div>
@@ -43,6 +52,7 @@ import CityAlphabet from "./Alphabet.vue";
 import pubsub from "pubsub-js";
 import Bscroll from "better-scroll";
 import CitySearch from "./Search.vue";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "CityList",
   data() {
@@ -50,6 +60,9 @@ export default {
       // cityFirstLetter: "",
       isAllCItyShow: true,
     };
+  },
+  computed: {
+    ...mapState(["city"]), //使用mapState将state中的数据映射成为计算属性
   },
   // watch: {
   //   cityFirstLetter() {
@@ -85,6 +98,12 @@ export default {
     changeAllCityShow(isShow) {
       this.isAllCItyShow = isShow;
     },
+    handleCityClick(cityName) {
+      //this.$store.commit("changeCity", cityName);
+      this.changeCity(cityName); //使用mapMutations
+      this.$router.push("/"); //编程式路由导航
+    },
+    ...mapMutations(["changeCity"]),
   },
   components: {
     CityAlphabet,
@@ -140,6 +159,11 @@ export default {
       line-height: 0.56rem;
       text-align: center;
       box-sizing: border-box;
+
+      overflow: hidden; //超出部分隐藏
+      text-overflow: ellipsis; //超出部分显示为...
+      white-space: nowrap; //设置文本不自动换行
+
       &.active {
         color: @bgColor;
         border-color: @bgColor;
