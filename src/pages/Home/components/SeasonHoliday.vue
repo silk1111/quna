@@ -22,7 +22,7 @@
       <div class="holiday-card" v-for="item of monthHoliday" :key="item.id">
         <router-link :to="'/detail/' + item.id">
           <div class="holiday-top">
-            <img class="holiday-img" :src="item.url" />
+            <img class="holiday-img" v-lazy="item.url" />
             <div class="holiday-title">
               <div class="holiday-title-in">
                 <p class="holiday-title-site">{{ item.titleSite }}</p>
@@ -48,7 +48,7 @@
     >
       <div class="holiday-card" v-for="item of todayHoliday" :key="item.id">
         <div class="holiday-top">
-          <img class="holiday-img" :src="item.url" />
+          <img class="holiday-img" v-lazy="item.url" />
         </div>
 
         <div class="holiday-infor">
@@ -173,7 +173,7 @@ export default {
       position: relative;
       .holiday-img {
         width: 100%;
-        height: auto;
+        height: 2.15rem;
         border-radius: 0.1rem;
       }
       .holiday-title {

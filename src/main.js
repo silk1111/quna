@@ -7,8 +7,7 @@ import './assets/styles/border.css'
 import './assets/styles/reset.css'
 import './assets/styles/iconfont.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
- // eslint-disable-next-line
-import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
+import VueLazyload from 'vue-lazyload';
 
 import 'swiper/dist/css/swiper.css'
 
@@ -20,5 +19,9 @@ new Vue({
   store
 }).$mount('#app')
 
-Vue.use(VueAwesomeSwiper)
+Vue.use(VueAwesomeSwiper);
+Vue.use(VueLazyload,{
+  error: require('@/assets/lazy-load-img/error.png'),
+  loading: require('@/assets/lazy-load-img/loading.gif')
+});
 

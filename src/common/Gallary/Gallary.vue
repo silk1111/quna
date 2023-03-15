@@ -1,15 +1,15 @@
 <template>
   <div
     class="container"
-    :style="{ display: [isGallaryShow ? 'flex' : 'none'] }"
-    @click="handleGallary"
+    :style="{ display: [$attrs.isGallaryShow ? 'flex' : 'none'] }"
+    @click="$attrs.handleGallary"
   >
     <div class="wrapper">
       <!-- 轮播图开始 -->
       <div class="swiper">
         <swiper :options="swiperOption" ref="mySwiper">
           <!-- 轮播的图片 -->
-          <div class="swiper-slide" v-for="item of swiperList" :key="item.id">
+          <div class="swiper-slide" v-for="item of $attrs.swiperList" :key="item.id">
             <img class="swiper-img" :src="item.url" />
           </div>
 
@@ -42,18 +42,18 @@ export default {
       },
     };
   },
-  props: {
-    isGallaryShow: Boolean,
-    imgIndex: Number,
-    handleGallary: Function,
-    swiperList: Array,
-  },
+  // props: {
+  //   isGallaryShow: Boolean,
+  //   imgIndex: Number,
+  //   handleGallary: Function,
+  //   swiperList: Array,
+  // },
   mounted() {
     console.log("强制刷新");
     this.$forceUpdate();
   },
   updated() {
-    this.$refs.mySwiper.swiper.activeIndex = this.imgIndex;
+    this.$refs.mySwiper.swiper.activeIndex = this.$attrs.imgIndex;
     this.$refs.mySwiper.update();
   },
   methods: {},
