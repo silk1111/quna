@@ -64,6 +64,7 @@ export default {
     .header-icon;
     float: right;
     margin-left: 0.2rem;
+    display: inline; //ie,margin双倍问题解决
   }
 }
 .detail-header-simple {

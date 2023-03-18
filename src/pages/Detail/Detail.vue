@@ -25,7 +25,11 @@ export default {
   },
 
   mounted() {
-    window.addEventListener("scroll", this.scrollEvent);
+    if (window.addEventListener) {
+      window.addEventListener("scroll", this.scrollEvent);
+    } else {
+      window.attachEvent("onscroll", this.scrollEvent); //跨浏览器兼容
+    }
   },
 
   methods: {

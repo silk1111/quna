@@ -87,7 +87,7 @@ export default {
 
   methods: {
     scrollEvent() {
-      //节流
+      //防抖
       if (this.timer) clearTimeout(this.timer);
       this.timer = setTimeout(() => {
         if (
@@ -103,7 +103,6 @@ export default {
           console.log("处于原本位置");
           this.isHeaderTop = false;
         }
-        // console.log(this.$refs.header.offsetTop);
 
         let parts = document.getElementsByClassName("part-detail ");
         let part = -1; //存储划过的最后一部分序列值
@@ -112,8 +111,6 @@ export default {
             part = index;
           }
         }
-        // console.log("位于----", part);
-        // this.partIndex = partIndex;
 
         if (this.partIndex != part && part != -1) {
           console.log("before.index", this.partIndex);

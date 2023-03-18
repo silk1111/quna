@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import City from '@/pages/City/City'
-import Detail from  '@/pages/Detail/Detail'
 Vue.use(VueRouter)
  const router = new VueRouter({
     routes: [
@@ -10,11 +8,11 @@ Vue.use(VueRouter)
          },
         {
             path: '/city',
-            component: City
+            component:  () => import('@/pages/City/City')
         },
         {
             path:'/detail/:id',
-            component:Detail
+            component:() => import('@/pages/Detail/Detail')
         }
     ]
 });

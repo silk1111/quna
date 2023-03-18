@@ -64,18 +64,6 @@ export default {
   computed: {
     ...mapState(["city"]), //使用mapState将state中的数据映射成为计算属性
   },
-  // watch: {
-  //   cityFirstLetter() {
-  //     // console.log(this.cityFirstLetter);
-  //     if (this.cityFirstLetter) {
-  //       //
-  //       console.log(this.$refs[this.cityFirstLetter][0]);
-
-  //       const element = this.$refs[this.cityFirstLetter][0]; //注意：当元素本身不是最末层时，获取到的是数组，需要【0】获取元素
-  //       this.scroll.scrollToElement(element);
-  //     }
-  //   },
-  // },
 
   mounted() {
     setTimeout(() => {

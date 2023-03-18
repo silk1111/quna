@@ -86,7 +86,7 @@ export default {
     // console.log("更新上一次获取的城市");
     this.lastCity = this.city; //执行完获取度假代码时更新上一次城市数据
     axios
-      .get("/api/homeHoliday.json?city=" + this.city)
+      .get("api/homeHoliday.json?city=" + this.city)
       .then((res) => {
         res = res.data;
         if (res.ret && res.data) {
@@ -104,9 +104,6 @@ export default {
     //页面重新显示时执行，router的生命周期,对于keep-alive的组件起到代替mounted的作用
     if (this.lastCity != this.city) {
       //当切换城市时，使用axios获取新的度假数据
-      // console.log(this.lastCity);
-      // console.log("city", this.city);
-      this.lastCity = this.city; //执行完获取度假代码时更新上一次城市数据
 
       axios
         .get("/api/homeHoliday.json?city=" + this.city)
@@ -116,7 +113,8 @@ export default {
             const { monthHoliday, todayHoliday } = res.data;
             this.monthHoliday = monthHoliday;
             this.todayHoliday = todayHoliday;
-            // console.log("todayHoliday", todayHoliday);
+
+            this.lastCity = this.city; //执行完获取度假代码时更新上一次城市数据
           }
         })
         .catch((res) => {

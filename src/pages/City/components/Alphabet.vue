@@ -54,25 +54,29 @@ export default {
     handlleTouchMove(e) {
       if (this.touchStatus) {
         // const startY = this.$refs.A[0].offsetTop; //由于字母表本身就有定位，而offsetTop是与有定位的祖宗元素的距离，因此数值为0
-        if (this.timer) clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
-          //提高效率
-          const moveY = e.touches[0].clientY - 238;
-          const movenum = Math.floor(moveY / 16);
-          if (
-            this.nowLetter != this.letters[movenum] && //首字母只在修改时触发
-            0 <= movenum && //防止超出数组范围
-            movenum < this.letters.length
-          ) {
-            this.nowLetter = this.letters[movenum];
-            pubsub.publish("cityFirstLetter", this.nowLetter);
-          }
-          if (this.nowLetter != this.letters[movenum] && movenum < 0 && movenum >= -1) {
-            //提高效率且划过头时返回首页
-            this.nowLetter = this.letters[movenum];
-            pubsub.publish("cityFirstLetter", "wrapper");
-          }
-        }, 10);
+        //if (this.timer) clearTimeout(this.timer);
+        if (!this.timer) {
+          //节流
+          this.timer = setTimeout(() => {
+            //提高效率
+            const moveY = e.touches[0].clientY - 238;
+            const movenum = Math.floor(moveY / 16);
+            if (
+              this.nowLetter != this.letters[movenum] && //首字母只在修改时触发
+              0 <= movenum && //防止超出数组范围
+              movenum < this.letters.length
+            ) {
+              this.nowLetter = this.letters[movenum];
+              pubsub.publish("cityFirstLetter", this.nowLetter);
+            }
+            if (this.nowLetter != this.letters[movenum] && movenum < 0 && movenum >= -1) {
+              //提高效率且划过头时返回首页
+              this.nowLetter = this.letters[movenum];
+              pubsub.publish("cityFirstLetter", "wrapper");
+            }
+            this.timer = null;
+          }, 100);
+        }
       }
     },
     handlleTouchEnd() {
